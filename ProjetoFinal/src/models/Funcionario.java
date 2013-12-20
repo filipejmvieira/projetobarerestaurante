@@ -1,35 +1,21 @@
 package models;
 
-public class Funcionario {
+public class Funcionario extends Custos {
 
-   private String nome;
    private String sobrenome;
    private String telefone;
    private String cpf; 
    private String rg;
-   private double salario;
    private double valeTransporte;
    private double valeRefeicao;
    
-    public Funcionario(String nome, String cpf) {
-        this.nome = nome;
-        this.cpf = cpf;
-    }
    
-    public String getCpf() {
+   public String getCpf() {
         return cpf;
     }
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getRg() {
@@ -38,14 +24,6 @@ public class Funcionario {
 
     public void setRg(String rg) {
         this.rg = rg;
-    }
-
-    public double getSalario() {
-        return salario;
-    }
-
-    public void setSalario(double salario) {
-        this.salario = salario;
     }
 
     public String getSobrenome() {
@@ -68,7 +46,7 @@ public class Funcionario {
         return valeRefeicao;
     }
 
-    public void setValeRefeicao(double valeRefeicao) {
+    public void setValeRefeicao() {
         this.valeRefeicao = valeRefeicao;
     }
 
@@ -76,50 +54,50 @@ public class Funcionario {
         return valeTransporte;
     }
 
-    public void setValeTransporte(double valeTransporte) {
+    public void setValeTransporte() {
         this.valeTransporte = valeTransporte;
     }
    
-    public double calculaFerias(){
-        return this.getSalario()*0.11;
+    public double calculaFerias(double custo){
+        return this.getCusto()*0.11;
     }
     
-    public double calculaDecimoTerceiro(){
-        return this.getSalario()*0.08;
+    public double calculaDecimoTerceiro(double custo){
+        return getCusto()*0.08;
     }
     
-    public double calculaFGTS(){
-        return this.getSalario()*0.09;
+    public double calculaFGTS(double custo){
+        return getCusto()*0.09;
     }
     
-    public double calculaMultaRecisao(){
-        return this.getSalario()*0.09;
+    public double calculaMultaRecisao(double custo){
+        return getCusto()*0.09;
     }
     
-    public double calculaINSS(){
-        return this.getSalario()*0.29;
+    public double calculaINSS(double custo){
+        return getCusto()*0.29;
     }
     
-    public double calculaEntidades(){
-        return this.getSalario()*0.02;
+    public double calculaEntidades(double custo){
+        return getCusto()*0.02;
     }
     
-    public double calculaSalarioEducacao(){
-        return this.getSalario()*0.03;
+    public double calculaSalarioEducacao(double custo){
+        return getCusto()*0.03;
     }
     
-    public double totalEncargos(){
-        return calculaFerias() + calculaDecimoTerceiro() + calculaFGTS() + calculaMultaRecisao() + calculaMultaRecisao() + calculaINSS() + calculaEntidades() + calculaSalarioEducacao(); 
+    public double totalEncargos(double custo){
+        return calculaFerias(custo) + calculaDecimoTerceiro(custo) + calculaFGTS(custo) + calculaMultaRecisao(custo) + calculaINSS(custo) + calculaEntidades(custo) + calculaSalarioEducacao(custo); 
     }
     
-    public double descontoFGTS(){
-        if (salario <= 375.00){
+    public double descontoFGTS(double custo){
+        if (custo <= 375.00){
             return 7.65;
         }
-        else if(salario < 410.00){
+        else if(custo < 410.00){
             return 8.65;
         }
-        else if(salario <= 625.00){
+        else if(custo <= 625.00){
             return 9.00;
         }
         else{
@@ -127,11 +105,12 @@ public class Funcionario {
         }
     }
     
-    public double salarioLiquido(){
-        return salario - descontoFGTS() + valeTransporte + valeRefeicao;
+    public double salarioLiquido(double custo, double valeTransporte, double valeRefeicao){
+        return custo - descontoFGTS(custo) + valeTransporte + valeRefeicao;
     }
     
+   
     public double custoTotalEmpresa(){
-        return salarioLiquido() + totalEncargos();
+        return salarioLiquido(custo, valeTransporte, valeRefeicao) + totalEncargos(custo);
     }
 }
