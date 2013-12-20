@@ -19,7 +19,7 @@ public class Custos {
         this.denominacao = denominacao;
         propertyChangeSupport.firePropertyChange(PROP_DENOMINACAO, oldDenominacao, denominacao);
     }
-    private transient final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
+    public transient final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
 
     public void addPropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.addPropertyChangeListener(listener);
@@ -40,5 +40,12 @@ public class Custos {
         double oldCusto = this.custo;
         this.custo = custo;
         propertyChangeSupport.firePropertyChange(PROP_CUSTO, oldCusto, custo);
-    }    
+    }   
+    
+    public void setCusto(int custo) {
+        double oldCusto = this.custo;
+        this.custo = custo;
+        propertyChangeSupport.firePropertyChange(PROP_CUSTO, oldCusto, custo);
+    }
+    
 }

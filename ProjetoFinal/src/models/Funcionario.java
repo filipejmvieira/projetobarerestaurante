@@ -113,4 +113,5 @@ public class Funcionario extends Custos {
     public double custoTotalEmpresa(){
         return salarioLiquido(custo, valeTransporte, valeRefeicao) + totalEncargos(custo);
     }
+
 }

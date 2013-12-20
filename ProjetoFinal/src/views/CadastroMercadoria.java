@@ -102,11 +102,11 @@ public class CadastroMercadoria extends javax.swing.JFrame {
         });
 
         org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, lstMercadoria, tblMercadoria);
-        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${produto}"));
-        columnBinding.setColumnName("Produto");
+        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${denominacao}"));
+        columnBinding.setColumnName("Denominacao");
         columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${preco}"));
-        columnBinding.setColumnName("Preco");
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${custo}"));
+        columnBinding.setColumnName("Custo");
         columnBinding.setColumnClass(Double.class);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${quantidade}"));
         columnBinding.setColumnName("Quantidade");
@@ -200,6 +200,8 @@ public class CadastroMercadoria extends javax.swing.JFrame {
         tblMercadoria.setRowSelectionInterval(nLinhas, nLinhas);
         
         txtProduto.requestFocus();
+        
+        
                 
     }//GEN-LAST:event_bttCadastarActionPerformed
 

@@ -5,8 +5,7 @@ import java.beans.PropertyChangeSupport;
 
 public class Mercadoria extends Custos {
   
-   
-     private int quantidade;
+    private int quantidade;
     public static final String PROP_QUANTIDADE = "quantidade";
 
     public int getQuantidade() {
@@ -16,24 +15,17 @@ public class Mercadoria extends Custos {
     public void setQuantidade(int quantidade) {
         int oldQuantidade = this.quantidade;
         this.quantidade = quantidade;
-        propertyChangeSupport.firePropertyChange(PROP_QUANTIDADE, oldQuantidade, quantidade);
+        pCS.firePropertyChange(PROP_QUANTIDADE, oldQuantidade, quantidade);
     }
-    private transient final PropertyChangeSupport propertyChangeSupport = new PropertyChangeSupport(this);
+    private transient final PropertyChangeSupport pCS = new PropertyChangeSupport(this);
 
-     @Override
+    @Override
     public void addPropertyChangeListener(PropertyChangeListener listener) {
-        propertyChangeSupport.addPropertyChangeListener(listener);
+        pCS.addPropertyChangeListener(listener);
     }
 
-     @Override
+    @Override
     public void removePropertyChangeListener(PropertyChangeListener listener) {
-        propertyChangeSupport.removePropertyChangeListener(listener);
+        pCS.removePropertyChangeListener(listener);
     }
-
-     
-     @Override
-     public double getCusto() {
-         return getCusto() * getQuantidade();
-     }
-    
 }

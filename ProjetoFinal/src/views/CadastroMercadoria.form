@@ -121,7 +121,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtProduto">
       <BindingProperties>
-        <BindingProperty name="text" source="tblMercadoria" sourcePath="${selectedElement.produto}" target="txtProduto" targetPath="text" updateStrategy="0" immediately="false"/>
+        <BindingProperty name="text" source="tblMercadoria" sourcePath="${selectedElement.produto}" target="txtProduto" targetPath="text" updateStrategy="0" immediately="false">
+          <BindingParameter name="javax.swing.binding.ParameterKeys.TEXT_CHANGE_STRATEGY" value="javax.swing.binding.TextChangeStrategy.ON_TYPE"/>
+        </BindingProperty>
         <BindingProperty name="enabled" source="tblMercadoria" sourcePath="${selectedElement!=null}" target="txtProduto" targetPath="enabled" updateStrategy="0" immediately="false"/>
       </BindingProperties>
       <Events>
@@ -176,10 +178,10 @@
         <Component class="javax.swing.JTable" name="tblMercadoria">
           <BindingProperties>
             <BindingProperty name="elements" source="lstMercadoria" target="tblMercadoria" targetPath="elements" updateStrategy="0" immediately="true">
-              <Subbinding sourcePath="${produto}">
+              <Subbinding sourcePath="${denominacao}">
                 <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="String.class"/>
               </Subbinding>
-              <Subbinding sourcePath="${preco}">
+              <Subbinding sourcePath="${custo}">
                 <BindingParameter name="javax.swing.binding.ParameterKeys.COLUMN_CLASS" value="Double.class"/>
               </Subbinding>
               <Subbinding sourcePath="${quantidade}">
